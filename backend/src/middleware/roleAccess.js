@@ -6,23 +6,22 @@ const ROLE_LEVELS = {
 }
 export const requireRole = (...roles)=>(req, res, next)=>{
     if(!req.user){
-        return res.status(401).json({message: "Unauthorized- No user information"});
+        return sendError(res, "Unauthorized- No user information", 401);
     }
     if(!roles.includes(req.user.role)){
-        return res.status(403).json({ message: `Access denied. Allowed: ${roles.join(", ")}`});
+        return sendError(res, `Access denied. Allowed: ${roles.join(", ")}`, 403);
     }
     next();
 }
 
 export const requireMinRole = (minRole)=>(req, res, next)=>{
     if(!req.user){
-        return res.status(401).json({message: "Unauthorized- No user information"});
+        return sendError(res, "Unauthorized- No user information", 401);
     }   
       const userLevel = ROLE_LEVELS[req.user.role] || 0;
     const requiredLevel = ROLE_LEVELS[minRole] || 0;
     if(userLevel < requiredLevel){
-        return res.status(403).json({ message: `Access denied. Minimum role required: ${minRole}`});4
-        return
+        return sendError(res, `Access denied. Minimum role required: ${minRole}`, 403);
     }
     next();
 };
