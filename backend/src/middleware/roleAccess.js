@@ -1,4 +1,4 @@
-
+import { sendError } from "../utils/Response.js";
 const ROLE_LEVELS = {
     viewer: 1,
     analyst: 2,
