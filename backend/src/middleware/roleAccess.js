@@ -9,7 +9,7 @@ export const requireRole = (...roles)=>(req, res, next)=>{
         return sendError(res, "Unauthorized- No user information", 401);
     }
     if(!roles.includes(req.user.role)){
-        return sendError(res, `Access denied. Allowed: ${roles.join(", ")}`, 403);
+        return sendError(res, `Access denied. Allowed: ${roles.join(", ")}`, 403); 
     }
     next();
 }
