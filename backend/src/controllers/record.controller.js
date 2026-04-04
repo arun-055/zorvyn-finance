@@ -14,18 +14,7 @@ export const getAllRecords = async (req, res) => {
     return sendError(res, error.message, 500);
   }
 };
-export const getRecordById = async (req, res) => {
-  try {
-    const record = await FinanceRecord.findById(req.params.id)
-      .populate("createdBy", "name email");
 
-    if (!record) return sendError(res, "Record not found.", 404);
-
-    return sendSuccess(res, { record });
-  } catch (error) {
-    return sendError(res, "Invalid record ID.", 400);
-  }
-};
 export const createRecord = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
