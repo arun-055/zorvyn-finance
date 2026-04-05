@@ -17,6 +17,7 @@ export const signup = async (req, res) => {
       
       return sendError(res, "Invalid email format", 400);
     }
+    
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       
@@ -29,7 +30,7 @@ export const signup = async (req, res) => {
       password,
         role
     });
-    await newUser.save(); 
+   
 
 
     const token = jwt.sign(
@@ -66,7 +67,7 @@ export const login = async (req, res) => {
      if (!isPasswordCorrect)
     return sendError(res, "Invalid email or password", 400);
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
      res.cookie("jwt", token, {
@@ -88,7 +89,7 @@ export const logout = (req, res) => {
     res.clearCookie("jwt");
     sendSuccess(res, "Logged out successfully",200);
 }
-const getMe = async (req, res) => {
+export const getme = async (req, res) => {
   try {
     return sendSuccess(res, {
       user: {

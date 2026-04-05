@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 
 import {getAllRecords, getRecordById, createRecord, updateRecord, deleteRecord} from "../controllers/record.controller.js";
-import auth from "../middleware/auth.js";
+import {auth} from "../middleware/auth.middleware.js";
 import { requireRole, requireMinRole } from "../middleware/roleAccess.js";
 import {createRecordValidator, updateRecordValidator, filterRecordValidator} from "../validations/recordValidation.js";
 

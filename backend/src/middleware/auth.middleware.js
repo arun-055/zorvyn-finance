@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import User from "./models/User.js";
+import User from "../models/User.js";
 import { sendError } from "../utils/Response.js";
 
 export async function auth(req, res, next) {
@@ -8,7 +8,7 @@ export async function auth(req, res, next) {
         if(!token){
             return sendError(res, "Unauthorized- No token provided", 401);
         }
-        const decoded = jwt.verify(token,process.env.JWT_SECRET_KEY);
+        const decoded = jwt.verify(token,process.env.JWT_SECRET);
         if(!decoded){
             return sendError(res, "Unauthorized- Invalid token", 401);
         }

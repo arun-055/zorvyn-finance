@@ -1,19 +1,6 @@
 import mongoose from "mongoose";
-const CATEGORIES = [
-  "income",
-  "expense",
-  "investment",
-  "business",
-  "food",
-  "transport",
-  "utilities",
-  "rent",
-  "healthcare",
-  "entertainment",
-  "education",
-  "shopping",
-  "other",
-];
+import {VALID_CATEGORIES} from "../validations/recordValidation.js";
+
 const financeRecordSchema = new mongoose.Schema(
     {
         amount:{
@@ -31,7 +18,7 @@ const financeRecordSchema = new mongoose.Schema(
         category:{
             type: String,
             enum:{
-                values: CATEGORIES,
+                values: VALID_CATEGORIES,
             },
             required: true
         },

@@ -14,7 +14,7 @@ const auditDataSchema = new mongoose.Schema(
     targetModel: {
       type: String,
       required: true,
-      enum: ["FinancialRecord", "User"],
+      enum: ["FinanceRecord", "User"],
     },
      targetId: {
       type: mongoose.Schema.Types.ObjectId,

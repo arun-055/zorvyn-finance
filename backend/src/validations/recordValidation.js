@@ -1,7 +1,7 @@
 
 import { body, query } from "express-validator";
 
-const VALID_CATEGORIES = [
+export const VALID_CATEGORIES = [
   "salary", "freelance", "investment", "business",
   "food", "transport", "utilities", "rent",
   "healthcare", "entertainment", "education",
